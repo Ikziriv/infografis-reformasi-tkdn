@@ -1,20 +1,23 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# 📊 Infografis Reformasi TKDN
 
-# Run and deploy your AI Studio app
+<p align="center">
+  <b>Visualizing Indonesia's Industrial Transformation through Data</b>
+</p>
 
-This contains everything you need to run your app locally.
+<p align="center">
+  <a href="https://infografis-reformasi-tkdn.vercel.app/"><strong>Explore the Live Demo »</strong></a>
+</p>
 
-View your app in AI Studio: https://ai.studio/apps/drive/1POcps7OriUxR0McG3c-xZ4G-pI3zSFQW
+<p align="center">
+  <img src="https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white" alt="Vercel">
+  <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React">
+  <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind">
+</p>
 
-## Run Locally
+---
 
-**Prerequisites:**  Node.js
+## 📖 Overview
 
+**Infografis Reformasi TKDN** is a digital initiative to provide transparency and clarity regarding **Tingkat Komponen Dalam Negeri (TKDN)**. This platform transforms complex regulatory data into interactive visualizations, helping stakeholders, business owners, and the public understand the progress of local industry empowerment in Indonesia.
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+### Why
