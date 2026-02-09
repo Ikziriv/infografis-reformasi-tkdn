@@ -17,69 +17,106 @@ const p3dnTeamData: P3DNTeamData[] = [
 const SpendingCommitmentCharts: React.FC = () => {
   return (
     <section>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
         {/* Pie Chart Section */}
         <div>
-          <h2 className="text-3xl font-bold tracking-tight text-white text-center mb-8">
+          <h2 className="text-2xl md:text-3xl font-serif text-slate-800 mb-8 border-b border-slate-100 pb-6">
             Komitmen Belanja PDN 2025
           </h2>
-          <div className="w-full h-96 bg-slate-800/50 border border-slate-700 rounded-lg p-6">
+          <div className="w-full h-96 bg-white border border-slate-100 rounded-2xl p-8 relative shadow-sm">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
                 <Pie
                   data={spendingData}
                   cx="50%"
                   cy="50%"
-                  labelLine={false}
-                  outerRadius={140}
-                  fill="#8884d8"
+                  innerRadius={90}
+                  outerRadius={120}
+                  paddingAngle={0}
                   dataKey="value"
-                  label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                  stroke="none"
+                  startAngle={90}
+                  endAngle={-270}
                 >
-                  {spendingData.map((entry) => (
-                    <Cell key={`cell-${entry.name}`} fill={entry.color} />
+                  {spendingData.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={index === 0 ? '#2563eb' : '#f8fafc'} />
                   ))}
                 </Pie>
-                <Tooltip 
+                <Tooltip
                   formatter={(value: number) => `Rp${value} T`}
                   contentStyle={{
-                    backgroundColor: '#1e293b',
-                    borderColor: '#475569',
+                    backgroundColor: '#ffffff',
+                    borderColor: '#f1f5f9',
+                    borderRadius: '12px',
+                    boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1)'
                   }}
                 />
-                <Legend formatter={(value, entry) => <span className="text-slate-300">{entry.payload.name}: Rp{entry.payload.value} T</span>} />
               </PieChart>
             </ResponsiveContainer>
+            {/* Center Text Overlay */}
+            <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none mt-[-10px]">
+              <span className="text-5xl font-bold text-slate-900 tracking-tight">52%</span>
+              <span className="text-[10px] text-slate-400 uppercase tracking-[0.2em] font-bold mt-2">Terserap</span>
+            </div>
+
+            <div className="absolute bottom-10 left-0 right-0 flex justify-center gap-8">
+              <div className="flex items-center gap-2">
+                <span className="w-2.5 h-2.5 rounded-full bg-blue-600"></span>
+                <span className="text-[11px] font-bold text-slate-500 uppercase tracking-widest">Terserap (Rp384 T)</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="w-2.5 h-2.5 rounded-full bg-slate-100"></span>
+                <span className="text-[11px] font-bold text-slate-400 uppercase tracking-widest">Belum Terserap</span>
+              </div>
+            </div>
           </div>
         </div>
 
         {/* Bar Chart Section */}
         <div>
-           <h2 className="text-3xl font-bold tracking-tight text-white text-center mb-8">
+          <h2 className="text-2xl md:text-3xl font-serif text-slate-800 mb-8 border-b border-slate-100 pb-6">
             Tim P3DN
           </h2>
-           <div className="w-full h-96 bg-slate-800/50 border border-slate-700 rounded-lg p-6">
-                <ResponsiveContainer width="100%" height="100%">
-                    <BarChart
-                        layout="vertical"
-                        data={p3dnTeamData}
-                        margin={{ top: 20, right: 30, left: 60, bottom: 5 }}
-                    >
-                        <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-                        <XAxis type="number" stroke="#94a3b8" />
-                        <YAxis dataKey="name" type="category" stroke="#94a3b8" width={120} />
-                        <Tooltip
-                          contentStyle={{
-                            backgroundColor: '#1e293b',
-                            borderColor: '#475569',
-                          }}
-                        />
-                        <Legend wrapperStyle={{ color: '#e2e8f0' }} />
-                        <Bar dataKey="Memiliki Tim P3DN" stackId="a" fill="#38bdf8" />
-                        <Bar dataKey="Belum memiliki Tim P3DN" stackId="a" fill="#64748b" />
-                    </BarChart>
-                </ResponsiveContainer>
-            </div>
+          <div className="w-full h-96 bg-white border border-slate-100 rounded-2xl p-8 shadow-sm">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart
+                layout="vertical"
+                data={p3dnTeamData}
+                margin={{ top: 20, right: 30, left: 30, bottom: 20 }}
+                barSize={24}
+              >
+                <CartesianGrid strokeDasharray="0" stroke="#f1f5f9" horizontal={true} vertical={false} />
+                <XAxis type="number" hide />
+                <YAxis
+                  dataKey="name"
+                  type="category"
+                  stroke="#94a3b8"
+                  width={140}
+                  tick={{ fontSize: 11, fill: '#64748b', fontWeight: 600 }}
+                  axisLine={false}
+                  tickLine={false}
+                  dx={-10}
+                />
+                <Tooltip
+                  cursor={{ fill: '#f8fafc' }}
+                  contentStyle={{
+                    backgroundColor: '#ffffff',
+                    borderColor: '#f1f5f9',
+                    borderRadius: '12px',
+                    boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1)'
+                  }}
+                />
+                <Legend
+                  wrapperStyle={{ bottom: -10, left: 30 }}
+                  iconType="circle"
+                  iconSize={8}
+                  formatter={(value) => <span className="text-[11px] font-bold text-slate-500 uppercase tracking-widest ml-1">{value}</span>}
+                />
+                <Bar name="Sudah Memiliki" dataKey="Memiliki Tim P3DN" stackId="a" fill="#2563eb" radius={[0, 4, 4, 0]} />
+                <Bar name="Belum Memiliki" dataKey="Belum memiliki Tim P3DN" stackId="a" fill="#f1f5f9" radius={[0, 4, 4, 0]} />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
         </div>
       </div>
     </section>
